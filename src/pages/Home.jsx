@@ -15,7 +15,7 @@ const Home = () => {
     try {
       const res = await fetch(API_URL);
       const data = await res.json();
-
+        
       setPosts(data);
       toast.success("Done");
 
@@ -35,16 +35,16 @@ const Home = () => {
       {
         loading ? (<Spinner />) : 
         posts.length > 0 ? (
-        <div>
+        <div className='grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl  p-2 mx-auto space-y-10 space-x-5 '>
           {
             posts.map((post)=>(
               <div className='flex flex-row gap-4 max-w-[450px]'>
-                <Product title={post.title} image={post.image} description={post.description} price={post.price}/>
+                <Product post={post} key={post.id} />
               </div>
             ))
           }
         </div>) :
-        <div>
+        <div className='flex justify-center items-center'>
           <p>No Posts Found</p>
         </div>
       }
